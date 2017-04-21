@@ -1,0 +1,38 @@
+{{ template "header.html" .}}
+<body>
+	<div class="container">
+		<div class="container_wrap">
+			{{ template "navbar.html" .}}
+			<div class="content">
+				<h2 class="m_3">Recherche</h2>
+				<div class="movie_top">
+					{{ if .movies }}
+					<div class="col-md-11 movie_box">
+						{{ range $movie := .movies}}
+						<!-- Movie variant with time -->
+						<div class="movie movie-test movie-test-dark movie-test-left">
+							<div class="movie__images">
+								<a href="/Informations/{{ $movie.ID }}" class="movie-beta__link">
+									<img alt="" src="{{ $movie.Thumbnail }}" class="img-responsive" alt=""/>
+								</a>
+							</div>
+							<div class="movie__info">
+								<a href="/Informations/{{ $movie.ID }}" class="movie__title">{{ $movie.Name }} {{if $movie.Sortie}}({{ $movie.Sortie }}) {{end}} </a>
+								<p class="movie__time">{{if $movie.FilmRuntime}} {{ secToMin $movie.FilmRuntime }} min{{end}}</p>
+								<p class="movie__option"><a href="single.html">Contray</a> | <a href="single.html">Dolor sit</a> | <a href="single.html">Drama</a></p>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+						{{ end }}
+					</div>
+					{{ else }}
+					<h3 class="m_3">Aucun Résultats</h3>
+					{{ end }}
+					<div class="clearfix"> </div>
+				</div>
+			</div>
+		</div>
+	</div>
+	{{template "footer.html" .}}
+</body>
+</html>
